@@ -330,7 +330,7 @@ Resource               Id                Methods   Representation           Stat
 <h3>
 <a name="21-resource" class="anchor" href="#21-resource"><span class="mini-icon mini-icon-link"></span></a>2.1 Resource</h3>
 
-<p>A <em>resource</em> MUST have a unique <em>id</em> that names the resource and SHOULD have a <em>description</em> containing further information about the intented use of the given resource. The <em>path</em> MUST be part of the resource definition and MUST be unique. The path is a URI [<a href="http://www.ietf.org/rfc/rfc2396.txt" title="RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax">RFC2396</a>] or URI template [<a href="http://www.ietf.org/rfc/rfc6570.txt" title="RFC 6570 - URI Template">RFC6570</a>]. If the path contains variables the resource MUST contain a set of <em>parameter</em> definitions. The resource MUST contain one definition for each available HTTP <em>method</em>.</p>
+<p>A <em>resource</em> MUST have a unique <em>id</em> that names the resource and SHOULD have a <em>description</em> containing further information about the intended use of the given resource. The <em>path</em> MUST be part of the resource definition and MUST be unique. The path is a URI [<a href="http://www.ietf.org/rfc/rfc2396.txt" title="RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax">RFC2396</a>] or URI template [<a href="http://www.ietf.org/rfc/rfc6570.txt" title="RFC 6570 - URI Template">RFC6570</a>]. If the path contains variables the resource MUST contain a set of <em>parameter</em> definitions. The resource MUST contain one definition for each available HTTP <em>method</em>.</p>
 
 <p>In the running example there are 2 resources with the paths "/{locale}/{messageId}" and "/fallback/{locale}".</p>
 
@@ -345,7 +345,7 @@ Resource               Id                Methods   Representation           Stat
 <a name="23-validation" class="anchor" href="#23-validation"><span class="mini-icon mini-icon-link"></span></a>2.3 Validation</h3>
 
 <p><em>Validations</em> define means to check the content of parameters. Validations are a set of type/pattern pairs with <em>type</em> defining the validation type and <em>pattern</em> containing the regular expression to apply.
-Currently the only supported type is <em>match</em>. Multiple entries within one validation set are disjunctive, so the entries are ORed.</p>
+Currently the only supported type is <em>match</em>. Multiple entries within one validation set are disjunctive, so the entries are OR'ed.</p>
 
 <h3>
 <a name="24-method" class="anchor" href="#24-method"><span class="mini-icon mini-icon-link"></span></a>2.4 Method</h3>
@@ -578,7 +578,9 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
               <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"application/json"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="o">:</span> <span class="s2">"http://some.json/msg"</span> <span class="p">},</span>
             <span class="p">],</span>
             <span class="s2">"headers"</span><span class="o">:</span> <span class="p">{</span>
-              <span class="s2">"X-What-Response-Header-Would-Only-Show-Up-For-One-Resource?"</span><span class="o">:</span> <span class="p">{}</span>
+              <span class="s2">"Location"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"The URL of the created message"</span>
+              <span class="p">}</span>
             <span class="p">}</span>
           <span class="p">},</span>
           <span class="s2">"examples"</span><span class="o">:</span> <span class="p">[</span>

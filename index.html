@@ -285,7 +285,7 @@ pre {
 <a name="restdoc---documenting-rest-apis" class="anchor" href="#restdoc---documenting-rest-apis"><span class="mini-icon mini-icon-link"></span></a>RestDoc - Documenting REST APIs</h1>
 
 <h1>
-<a name="draft" class="anchor" href="#draft"><span class="mini-icon mini-icon-link"></span></a>DRAFT</h1>
+<a name="version-1-2012-12-02" class="anchor" href="#version-1-2012-12-02"><span class="mini-icon mini-icon-link"></span></a>Version 1 (2012-12-02)</h1>
 
 <h2>
 <a name="1-introduction" class="anchor" href="#1-introduction"><span class="mini-icon mini-icon-link"></span></a>1. Introduction</h2>
@@ -325,7 +325,7 @@ Resource               Id                Methods   Representation           Stat
 <h2>
 <a name="2-components" class="anchor" href="#2-components"><span class="mini-icon mini-icon-link"></span></a>2. Components</h2>
 
-<p>The RestDoc model consist of different components, which are described in the following sections. Each component is part of the root model or is part of another component. The overall structure of RestDoc in defined in chapter <a href="#structure">3.1</a></p>
+<p>The RestDoc model consist of different components, which are described in the following sections. Each component is part of the root model or is part of another component. The overall structure of RestDoc in defined in chapter <em>3.1</em></p>
 
 <h3>
 <a name="21-resource" class="anchor" href="#21-resource"><span class="mini-icon mini-icon-link"></span></a>2.1 Resource</h3>
@@ -385,7 +385,7 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
 <h3>
 <a name="32-retrieval" class="anchor" href="#32-retrieval"><span class="mini-icon mini-icon-link"></span></a>3.2 Retrieval</h3>
 
-<p>The retrieval of the RestDoc documentation is done via the HTTP OPTIONS verb. Querying the server with an asterisk as path (<code>OPTIONS * HTTP/1.1</code>) MUST return a RestDoc documentation with all resources available.</p>
+<p>The retrieval of the RestDoc documentation is done via the HTTP OPTIONS verb. Querying the server with a path (<code>OPTIONS /xyz HTTP/1.1</code>) MUST return a RestDoc documentation with all resources available with paths beginning with /xyz.</p>
 
 <p>Performing an OPTIONS request with an unexpanded URI path MUST return a RestDoc resource description. Given our example application the request <code>OPTIONS /%7Blocale%7D/%7BmessageId%7D HTTP/1.1</code> MUST return the RestDoc resource description for the "LocalizedMessage" resource.</p>
 
@@ -397,9 +397,9 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
 
 <p>The default representation of RestDoc is JSON with the custom MediaType <code>application/x-restdoc+json</code>. In the following you find a textual definition of the RestDoc JSON representation.</p>
 
-<p>The root object consist of two object with the names "schema" and "headers" and an array "resources". </p>
+<p>The root object consist of two object with the names <em>schema</em> and <em>headers</em> and an array <em>resources</em>. </p>
 
-<p>The "schema" object contains objects with the schema URI as name and the schema definition as content. The content contains a field type with value "inline" or "url". Inline schemas provide a schema object with inline JSON-Schema and URL schemas provide a field url with the URL of the schema document.</p>
+<p>The <em>schema</em> object contains objects with the schema URI as name and the schema definition as content. The content contains a field type with value <em>inline</em> or <em>url</em>. Inline schemas provide a schema object with inline JSON-Schema and URL schemas provide a field url with the URL of the schema document.</p>
 
 <div class="highlight"><pre>  <span class="s2">"schemas"</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">"http://some.json/msg"</span> <span class="o">:</span> <span class="p">{</span>
@@ -418,12 +418,12 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
     <span class="p">},</span>
     <span class="s2">"http://some.xml/msg"</span> <span class="o">:</span> <span class="p">{</span>
       <span class="s2">"type"</span> <span class="o">:</span> <span class="s2">"url"</span><span class="p">,</span>
-      <span class="s2">"url"</span> <span class="o">:</span> <span class="s2">"http://some.xml/msg.xsd"</span>
+        <span class="s2">"url"</span> <span class="o">:</span> <span class="s2">"http://some.xml/msg.xsd"</span>
     <span class="p">}</span>
   <span class="p">},</span>
 </pre></div>
 
-<p>The "headers" object contains a "request" and a "response" object. The contents of these objects are itself objects with the header name as field name and the content as described in <a href="#header">Section 2.5</a>.</p>
+<p>The <em>headers</em> object contains a <em>request</em> and a <em>response</em> object. The contents of these objects are itself objects with the header name as field name and the content as described in <em>Section 2.5</em></p>
 
 <div class="highlight"><pre>  <span class="s2">"headers"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"request"</span><span class="o">:</span> <span class="p">{</span>
@@ -492,7 +492,7 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
 <li>body: the example request body</li>
 </ul>
 </li>
-</ul><p>see <a href="#full-restdoc-example">Section 5.1</a> for a full example of a JSON representation of RestDoc</p>
+</ul><p>see <em>Section 5.1</em> for a full example of a JSON representation of RestDoc</p>
 
 <h2>
 <a name="5-examples" class="anchor" href="#5-examples"><span class="mini-icon mini-icon-link"></span></a>5. Examples</h2>
@@ -500,8 +500,8 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
 <h3>
 <a name="51-full-restdoc-example" class="anchor" href="#51-full-restdoc-example"><span class="mini-icon mini-icon-link"></span></a>5.1 Full RestDoc example</h3>
 
-<div class="highlight"><pre><span class="nx">OPTIONS</span> <span class="o">*</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Accept</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span><span class="p">;</span>
+<div class="highlight"><pre><span class="nx">OPTIONS</span> <span class="o">/</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">restdoc</span><span class="o">+</span><span class="nx">json</span><span class="p">;</span>
 
 <span class="p">{</span>
   <span class="s2">"schemas"</span> <span class="o">:</span> <span class="p">{</span>
@@ -575,7 +575,7 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
           <span class="s2">"response"</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Response representations this resource/method provides</span>
             <span class="s2">"types"</span><span class="o">:</span> <span class="p">[</span>
               <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"text/plain"</span> <span class="p">},</span>
-              <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"application/json"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="o">:</span> <span class="s2">"http://some.json/msg"</span> <span class="p">},</span>
+              <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"application/json"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="o">:</span> <span class="s2">"http://some.json/msg"</span> <span class="p">}</span>
             <span class="p">],</span>
             <span class="s2">"headers"</span><span class="o">:</span> <span class="p">{</span>
               <span class="s2">"Location"</span><span class="o">:</span> <span class="p">{</span>
@@ -630,7 +630,7 @@ Currently the only supported type is <em>match</em>. Multiple entries within one
 
 <p>RestDoc is designed to be extensible. Therefore any additional fields not named in this specification MUST be ignored by implementations that do not understand them. But implementations MUST NOT rely on any additional fields to be RestDoc compliant. Extensions MUST NOT change the meaning of fields defined in this specification.</p>
 
-<p>An extension may for example defined other validation types than "match" but must not change the behavior of the type "match".</p>
+<p>An extension may for example defined other validation types than <em>match</em> but must not change the behavior of the type <em>match</em>.</p>
 
 <h3>
 <a name="62-naming-conventions" class="anchor" href="#62-naming-conventions"><span class="mini-icon mini-icon-link"></span></a>6.2 Naming conventions</h3>
@@ -678,7 +678,8 @@ zgstewart@gmail.com
 <h3>
 <a name="72-contact" class="anchor" href="#72-contact"><span class="mini-icon mini-icon-link"></span></a>7.2 Contact</h3>
 
-<p>This specification and any related work is located at <a href="http://www.restdoc.org">http://www.restdoc.org</a> and <a href="https://github.com/RestDoc">https://github.com/RestDoc</a>. </p>
+<p>This specification and any related work is located at <a href="http://www.restdoc.org">http://www.restdoc.org</a> and <a href="https://github.com/RestDoc">https://github.com/RestDoc</a>. 
+Discussion and help can be found on the RestDoc Google group located at <a href="https://groups.google.com/d/forum/restdoc">https://groups.google.com/d/forum/restdoc</a></p>
 
 <h2>
 <a name="a-references" class="anchor" href="#a-references"><span class="mini-icon mini-icon-link"></span></a>A. References</h2>
@@ -706,4 +707,5 @@ zgstewart@gmail.com
 <p>[REST]: R. Fielding - Architectural Styles and the Design of Network-based Software Architectures, Chapter 5</p>
 
 <p>[WikiREST]: "Wikipedia - Representational state transfer"</p>
+</body>
 </html>
